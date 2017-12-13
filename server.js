@@ -12,9 +12,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/anniversaire', (req, res) => {
-  if (req.body.result.resolvedQuery.indexOf('Anniversaire') != -1) {
+  if (req.body.result.resolvedQuery.indexOf('Anniversaire') != -1 || req.body.result.resolvedQuery.indexOf('anniversaire') != -1) {
     console.log();
-  
+
     var request = require("request");
 
     var options = {
@@ -36,12 +36,13 @@ app.post('/anniversaire', (req, res) => {
       console.log(dataToSend);
 
       return res.json({
-        speech: `C'est l'${dataToSend}`,
+        speech: `C'est l'${dataToSend.toLowerCase()}`,
         displayText: dataToSend,
-        source: 'get-movie-details'
+        source: 'get-movie-details',
+
       });
     });
-  }  
+  }
 });
 
 app.listen(PORT, () => {
