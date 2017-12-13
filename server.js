@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/anniversaire', (req, res) => {
-  if (req.body.indexOf('Anniversaire') != -1) {
-    
+  if (req.body) {
+    console.log(req.body);
   
     var request = require("request");
 
