@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.post('/anniversaire', (req, res) => {
   if (req.body) {
-    console.log(req.body);
+    console.log(req.body.result.resolvedQuery);
   
     var request = require("request");
 
