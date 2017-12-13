@@ -49,7 +49,7 @@ app.post('/', (req, res) => {
 
     let apiKey = '2c8c22e7283717b657e8dd338db9fc51';
     let city = 'bordeaux';
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&lang=fr`
 
     request(url, function (err, response, body) {
       let data = JSON.parse(body);
