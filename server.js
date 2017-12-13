@@ -1,19 +1,22 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
+const apiai = require('apiai');
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+const hook = apiai("c2e976879b1a4f9c822185d7caf30888");
 
-var apiai = require('apiai');
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
 
-var hook = apiai("c2e976879b1a4f9c822185d7caf30888");
-
-var request = hook.textRequest('Je suis invité ce soir', {
-  sessionId: '201c816f-6e4a-446e-b7df-6feae9a5d8cd'
-});
-
-app.post('/', (req, res) => {
+app.post('/test', (req, res) => {
+  var request = hook.textRequest(req.body.request, {
+    sessionId: '201c816f-6e4a-446e-b7df-6feae9a5d8cd'
+  });
   request.on('response', function (response) {
     console.log(response)
     res.json(response);
