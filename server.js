@@ -1,44 +1,17 @@
-// app.js
-'use strict';
-const express = require('express');
-const app = express();
-const port = 3000;
-const bodyParser = require('body-parser')
-const path = require('path');
+var apiai = require('apiai');
 
-app.use(bodyParser.json());
+var app = apiai("c2e976879b1a4f9c822185d7caf30888");
 
-//LIST
-app.get('/', function (req, res) {
-  // res.json({ message: 'Hello' + req.params.name });
-  res.sendFile(path.join(__dirname + '/index.html'));
+var request = app.textRequest('Je suis invité ce soir', {
+  sessionId: '201c816f-6e4a-446e-b7df-6feae9a5d8cd'
 });
 
-//CREATE
-app.post('/', (req, res) => {
-  let hook = req.body;
-  console.log(hook.name);
-  res.send('ok');
+request.on('response', function (response) {
+  console.log(response);
 });
 
-//EDIT
-app.put('/', (req, res) => {
-  let hook = req.body;
-
-  if (hook.id === undefined) {
-    res.status(400).json({ "message": "id is required" });
-  }
-  else {
-    console.log(hook.name);
-    res.send({ "modified_name": hook.name });
-  }
+request.on('error', function (error) {
+  console.log(error);
 });
 
-//DELETE
-app.delete('/:id', (req, res) => {
-  res.send(req.params.id);
-});
-
-app.listen(port, function () {
-  console.log('Example app listening on port', port);
-});
+request.end();
