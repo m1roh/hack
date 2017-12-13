@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const path = require('path');
+const path = require('path');
 // const apiai = require('apiai');
 
 const PORT = process.env.PORT || 5000;
@@ -58,7 +58,7 @@ app.post('/anniversaire', (req, res) => {
 });
 
 
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
