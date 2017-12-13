@@ -14,9 +14,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/anniversaire', (req, res) => {
-/*   if (req.body.result.resolvedQuery.indexOf('Anniversaire') != -1 || req.body.result.resolvedQuery.indexOf('anniversaire') != -1) { */
+  if (req.body.result.resolvedQuery.indexOf('Anniversaire') != -1 || req.body.result.resolvedQuery.indexOf('anniversaire') != -1) {
     console.log();
-  
+
     var request = require("request");
 
     var options = {
@@ -41,10 +41,10 @@ app.post('/anniversaire', (req, res) => {
         speech: `C'est l'${dataToSend.toLowerCase()}`,
         displayText: dataToSend,
         source: 'get-movie-details',
-        
+
       });
     });
-/*   }   */
+  }
 });
 
 
