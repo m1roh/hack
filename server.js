@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.post('/anniversaire', (req, res) => {
-  if (req.body.result.resolvedQuery.indexOf('Anniversaire') != -1) {
+  // if (req.body.result.resolvedQuery.indexOf('Anniversaire') != -1) {
     console.log();
   
     var request = require("request");
@@ -43,7 +43,7 @@ app.post('/anniversaire', (req, res) => {
         source: 'get-movie-details'
       });
     });
-  }  
+  // }  
 });
 
 
